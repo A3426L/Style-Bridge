@@ -84,52 +84,20 @@ class GUI(tk.Frame):
         canvas.create_image(400,240,image=self.tkimg)
         canvas.place(x=0,y=0)
         #button1
-        # img = self.make_img(self.img_number['A'],100,100)
-        # self.tkimg1 = ImageTk.PhotoImage(img,master=self.master)
-        # A_btn = tk.Button(self.frame_list[0],image=self.tkimg1,command= lambda :self.setting_menu('A'))
-        # A_btn.place(x=85,y=80)
         self.make_button('A',85,80)
         #button2
-        # img = self.make_img(self.img_number['B'],100,100)
-        # self.tkimg2 = ImageTk.PhotoImage(img,master=self.master)
-        # B_btn = tk.Button(self.frame_list[0],image=self.tkimg2,command= lambda :self.setting_menu('B'))
-        # B_btn.place(x=245,y=80)
         self.make_button('B',245,80)
-        #button3
-        # img = self.make_img(self.img_number['C'],100,100)
-        # self.tkimg3 = ImageTk.PhotoImage(img,master=self.master)
-        # C_btn = tk.Button(self.frame_list[0],image=self.tkimg3,command= lambda :print('C'))
-        # C_btn.place(x=405,y=80)  
+        #button3 
         self.make_button('C',405,80)
-        #button4
-        # img = self.make_img(self.img_number['D'],100,100)
-        # self.tkimg4 = ImageTk.PhotoImage(img,master=self.master)
-        # D_btn = tk.Button(self.frame_list[0],image=self.tkimg4,command= lambda :print('D'))
-        # D_btn.place(x=565,y=80) 
+        #button4 
         self.make_button('D',565,80)
         #button5
-        # img = self.make_img(self.img_number['E'],100,100)
-        # self.tkimg5 = ImageTk.PhotoImage(img,master=self.master)
-        # E_btn = tk.Button(self.frame_list[0],image=self.tkimg5,command= lambda :print('E'))
-        # E_btn.place(x=85,y=250)
         self.make_button('E',85,250)
         #button6
-        # img = self.make_img(self.img_number['F'],100,100)
-        # self.tkimg6 = ImageTk.PhotoImage(img,master=self.master)
-        # F_btn = tk.Button(self.frame_list[0],image=self.tkimg6,command= lambda :print('F'))
-        # F_btn.place(x=245,y=250)
         self.make_button('F',245,250)
         #button7
-        # img = self.make_img(self.img_number['G'],100,100)
-        # self.tkimg7 = ImageTk.PhotoImage(img,master=self.master)
-        # G_btn = tk.Button(self.frame_list[0],image=self.tkimg7,command= lambda :print('G'))
-        # G_btn.place(x=405,y=250)
         self.make_button('G',405,250)
         #button8
-        # img = self.make_img(self.img_number['H'],100,100)
-        # self.tkimg8 = ImageTk.PhotoImage(img,master=self.master)
-        # H_btn = tk.Button(self.frame_list[0],image=self.tkimg8,command= lambda :print('H'))
-        # H_btn.place(x=565,y=250)
         self.make_button('H',565,250)
 
         
