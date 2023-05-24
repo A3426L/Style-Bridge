@@ -14,18 +14,19 @@ class GUI(tk.Frame):
         
         self.frame_list = ["top_frame","second_frame"]
         self.img_path = './img/'
-        self.number_path = './img/number/'
+        self.number_path = self.img_path+'number/'
         self.img_list = {'top_bg':self.img_path+'Top_background.png','closet_btn':self.img_path+'closet_button.png',
                          'goout_btn':self.img_path+'go_out_Button.png','closet_bg':self.img_path+'select.png'}
         self.img_number = {'A':self.number_path+'A.png','B':self.number_path+'B.png','C':self.number_path+'C.png',
                           'D':self.number_path+'D.png','E':self.number_path+'E.png','F':self.number_path+'F.png',
-                          'G':self.number_path+'G.png','H':self.number_path+'H.png',}
-        
+                          'G':self.number_path+'G.png','H':self.number_path+'H.png','save':self.number_path+'save.png'} 
+        self.name_list = ["tkimg","tkimg1","tkimg2","tkimg3","tkimg4","tkimg5","tkimg6","tkimg7","tkimg8"]
+
+        self.comboname_list = ['color','type','brightness','saturation','flags']
         self.color_list=['White','Black','Red','Pink','Orange','Blue','Yellow','Green','Purple','grey','brown']
-        self.tkimg = self.tkimg1 = self.tkimg2 = self.tkimg3 = self.tkimg4 = self.tkimg5 = self.tkimg6 = self.tkimg7 = self.tkimg8 =0
-        self.name_list = [self.tkimg,self.tkimg1,self.tkimg2,self.tkimg3,self.tkimg4,self.tkimg5,self.tkimg6,self.tkimg7,self.tkimg8]
 
         self.func_count = 0
+        self.combo_count = 0
         
         self.master.title('Menu')
         self.master.geometry("800x480")       
@@ -51,9 +52,18 @@ class GUI(tk.Frame):
         print(self.func_count)
         img = self.make_img(self.img_number[img_name],100,100)
         self.name_list[self.func_count-1]= ImageTk.PhotoImage(img,master=self.master)
-        tkimg = tk.Button(self.frame_list[0],image=self.name_list[self.func_count-1],command= lambda :self.setting_menu(img_name))
+        tkimg = tk.Button(self.frame_list[0],image=self.name_list[self.func_count-1],command= lambda : self.setting_menu(img_name))
         tkimg.place(x=place_x,y=place_y)
-        
+
+    def make_combobox(self,place_x,place_y,value):
+        self.combo_count += 1
+        self.comboname_list[self.combo_count-1] = ttk.Combobox(self.frame_list[0], values=value)
+        self.comboname_list[self.combo_count-1].place(x=place_x,y=place_y)   
+
+    def save_combobox(self):
+        data=self.comboname_list[0].get()
+        print(data)
+
     def top_menu(self):
         self.refresh_frame()
         self.master.title('top_Menu')
@@ -100,7 +110,7 @@ class GUI(tk.Frame):
         #button8
         self.make_button('H',565,250)
 
-        
+
     def setting_menu(self,alphabet):
         self.refresh_frame()
         img_key = alphabet
@@ -114,10 +124,11 @@ class GUI(tk.Frame):
         alphabet_label = ttk.Label(self.frame_list[0],background='black',compound='left',image=self.tkimg)
         alphabet_label.place(x=350,y=0)
         #combobox1(color)
-        color = ttk.Combobox(self.frame_list[0], values=self.color_list)
-        color.place(x=245,y=250)
-        data=color.get()
-        print(data)
+        self.make_combobox(245,250,self.color_list)
+        #button(save)
+        save_btn = tk.Button(self.frame_list[0],bg='White',compound="top",command= lambda :self.save_combobox())
+        save_btn.place(x=85,y=90)
+
 
 root = tk.Tk()
 app = GUI(master=root)
