@@ -24,6 +24,8 @@ class GUI(tk.Frame):
 
         self.comboname_list = ['color','type','brightness','saturation','flags']
         self.color_list=['White','Black','Red','Pink','Orange','Blue','Yellow','Green','Purple','grey','brown']
+        self.type_list={'tops':['jaket','T-shurts'],
+                        'botoms':['jeans','tino']}
 
         self.func_count = 0
         self.combo_count = 0
@@ -62,6 +64,8 @@ class GUI(tk.Frame):
 
     def save_combobox(self):
         data=self.comboname_list[0].get()
+        print(data)
+        data=self.comboname_list[1].get()
         print(data)
 
     def top_menu(self):
@@ -125,6 +129,8 @@ class GUI(tk.Frame):
         alphabet_label.place(x=350,y=0)
         #combobox1(color)
         self.make_combobox(245,250,self.color_list)
+        #combobox2(type)
+        self.make_combobox(525,250,self.type_list['tops'])
         #button(save)
         save_btn = tk.Button(self.frame_list[0],bg='White',compound="top",command= lambda :self.save_combobox())
         save_btn.place(x=85,y=90)
