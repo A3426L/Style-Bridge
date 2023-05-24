@@ -13,8 +13,8 @@ class GUI(tk.Frame):
         super().__init__(master)
         
         self.frame_list = ["top_frame","second_frame"]
-        self.number_path = '＊＊＊＊＊＊＊'
-        self.img_path = '＊＊＊＊＊＊＊＊'
+        self.number_path = '******'
+        self.img_path = '******'
         self.img_list = {'top_bg':self.img_path+'Top_background.png','closet_btn':self.img_path+'closet_button.png',
                          'goout_btn':self.img_path+'go_out_Button.png','closet_bg':self.img_path+'select.png'}
         self.img_number = {'A_btn':self.number_path+'A.png','B_btn':self.number_path+'B.png','C_btn':self.number_path+'C.png',
