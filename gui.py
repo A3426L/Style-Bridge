@@ -8,6 +8,8 @@ from PIL import Image
 from PIL import ImageTk
 import inspect  #呼び出された関数を知るために使用
 
+
+
 class GUI(tk.Frame):
     def __init__(self,master = None):
         super().__init__(master)
@@ -49,12 +51,12 @@ class GUI(tk.Frame):
             img = img.resize(size)
         return img
     
-    def make_button(self,img_name,place_x,place_y):
+    def make_button(self,img_name,place_x,place_y,cmd):
         self.func_count += 1
         print(self.func_count)
         img = self.make_img(self.img_number[img_name],100,100)
         self.name_list[self.func_count-1]= ImageTk.PhotoImage(img,master=self.master)
-        tkimg = tk.Button(self.frame_list[0],image=self.name_list[self.func_count-1],command= lambda : self.setting_menu(img_name))
+        tkimg = tk.Button(self.frame_list[0],image=self.name_list[self.func_count-1],command= lambda :cmd(input))
         tkimg.place(x=place_x,y=place_y)
 
     def make_combobox(self,place_x,place_y,value):
@@ -98,21 +100,21 @@ class GUI(tk.Frame):
         canvas.create_image(400,240,image=self.tkimg)
         canvas.place(x=0,y=0)
         #button1
-        self.make_button('A',85,80)
+        self.make_button('A',85,80,self.setting_menu,'A')
         #button2
-        self.make_button('B',245,80)
+        self.make_button('B',245,80,self.setting_menu,'B')
         #button3 
-        self.make_button('C',405,80)
+        self.make_button('C',405,80,self.setting_menu,'B')
         #button4 
-        self.make_button('D',565,80)
+        self.make_button('D',565,80,self.setting_menu,'B')
         #button5
-        self.make_button('E',85,250)
+        self.make_button('E',85,250,self.setting_menu,'B')
         #button6
-        self.make_button('F',245,250)
+        self.make_button('F',245,250,self.setting_menu,'B')
         #button7
-        self.make_button('G',405,250)
+        self.make_button('G',405,250,self.setting_menu,'B')
         #button8
-        self.make_button('H',565,250)
+        self.make_button('H',565,250,self.setting_menu,'B')
 
 
     def setting_menu(self,alphabet):
@@ -132,8 +134,9 @@ class GUI(tk.Frame):
         #combobox2(type)
         self.make_combobox(525,250,self.type_list['tops'])
         #button(save)
-        save_btn = tk.Button(self.frame_list[0],bg='White',compound="top",command= lambda :self.save_combobox())
-        save_btn.place(x=85,y=90)
+        self.make_button('save',85,90,self.save_combobox)
+        # save_btn = tk.Button(self.frame_list[0],,compound="top",command= lambda :self.save_combobox())
+        # save_btn.place(x=85,y=90)
 
 
 root = tk.Tk()
