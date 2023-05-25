@@ -18,8 +18,8 @@ class GUI(tk.Frame):
         self.img_path = './img/'
         self.number_path = self.img_path+'number/'
         self.img_list = {'top_bg':self.img_path+'Top_background.png','closet_btn':self.img_path+'closet_button.png',
-                         'goout_btn':self.img_path+'go_out_Button.png','closet_bg':self.img_path+'select.png'}
-        self.img_number = {'A':self.number_path+'A.png','B':self.number_path+'B.png','C':self.number_path+'C.png',
+                         'goout_btn':self.img_path+'go_out_Button.png','closet_bg':self.img_path+'select.png',
+                         'A':self.number_path+'A.png','B':self.number_path+'B.png','C':self.number_path+'C.png',
                           'D':self.number_path+'D.png','E':self.number_path+'E.png','F':self.number_path+'F.png',
                           'G':self.number_path+'G.png','H':self.number_path+'H.png','save':self.number_path+'save.png'} 
         self.name_list = ["tkimg","tkimg1","tkimg2","tkimg3","tkimg4","tkimg5","tkimg6","tkimg7","tkimg8"]
@@ -51,10 +51,10 @@ class GUI(tk.Frame):
             img = img.resize(size)
         return img
     
-    def make_button(self,img_name,place_x,place_y,cmd,input):
+    def make_button(self,img_name,place_x,place_y,cmd,input,*size):
         self.func_count += 1
         print(self.func_count)
-        img = self.make_img(self.img_number[img_name],100,100)
+        img = self.make_img(self.img_list[img_name],*size)
         self.name_list[self.func_count-1]= ImageTk.PhotoImage(img,master=self.master)
         tkimg = tk.Button(self.frame_list[0],image=self.name_list[self.func_count-1],command= lambda :cmd(input))
         tkimg.place(x=place_x,y=place_y)
@@ -80,17 +80,11 @@ class GUI(tk.Frame):
         canvas1.create_image(0,0,anchor='nw',image=self.tkimg)
         canvas1.place(x=0,y=0)
         #button1(closet)
-        img = self.make_img(self.img_list['closet_btn'])
-        self.tkimg2 = ImageTk.PhotoImage(img,master=root)
-        closet_btn = tk.Button(self.frame_list[0],image=self.tkimg2,compound="top",command= lambda :self.closet_menu())
-        closet_btn.place(x=85,y=90)
+        self.make_button('closet_btn',85,90,self.closet_menu,None)
         #button2(go out)
-        img = self.make_img(self.img_list['goout_btn'],256,256)
-        self.tkimg3 = ImageTk.PhotoImage(img,master=self.master)
-        goout_btn = tk.Button(self.frame_list[0],image=self.tkimg3,compound="top",command= lambda :print('goout'))
-        goout_btn.place(x=485,y=90)
+        self.make_button('goout_btn',485,90,print,'goout',256,256)
     
-    def closet_menu(self):
+    def closet_menu(self,input):
         self.refresh_frame()
         self.master.title('closet')
         #canvas
@@ -125,7 +119,7 @@ class GUI(tk.Frame):
         canvas = tk.Canvas(self.frame_list[0],bg='White',width=800,height=480)
         canvas.place(x=0,y=0)
         #label(alphabet)
-        img = self.make_img(self.img_number[img_key],100,100)
+        img = self.make_img(self.img_list[img_key],100,100)
         self.tkimg = ImageTk.PhotoImage(img,master=self.master)
         alphabet_label = ttk.Label(self.frame_list[0],background='black',compound='left',image=self.tkimg)
         alphabet_label.place(x=350,y=0)
