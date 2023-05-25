@@ -51,7 +51,7 @@ class GUI(tk.Frame):
             img = img.resize(size)
         return img
     
-    def make_button(self,img_name,place_x,place_y,cmd):
+    def make_button(self,img_name,place_x,place_y,cmd,input):
         self.func_count += 1
         print(self.func_count)
         img = self.make_img(self.img_number[img_name],100,100)
@@ -64,7 +64,7 @@ class GUI(tk.Frame):
         self.comboname_list[self.combo_count-1] = ttk.Combobox(self.frame_list[0], values=value)
         self.comboname_list[self.combo_count-1].place(x=place_x,y=place_y)   
 
-    def save_combobox(self):
+    def save_combobox(self,input):
         data=self.comboname_list[0].get()
         print(data)
         data=self.comboname_list[1].get()
@@ -104,17 +104,17 @@ class GUI(tk.Frame):
         #button2
         self.make_button('B',245,80,self.setting_menu,'B')
         #button3 
-        self.make_button('C',405,80,self.setting_menu,'B')
+        self.make_button('C',405,80,self.setting_menu,'C')
         #button4 
-        self.make_button('D',565,80,self.setting_menu,'B')
+        self.make_button('D',565,80,self.setting_menu,'D')
         #button5
-        self.make_button('E',85,250,self.setting_menu,'B')
+        self.make_button('E',85,250,self.setting_menu,'E')
         #button6
-        self.make_button('F',245,250,self.setting_menu,'B')
+        self.make_button('F',245,250,self.setting_menu,'F')
         #button7
-        self.make_button('G',405,250,self.setting_menu,'B')
+        self.make_button('G',405,250,self.setting_menu,'G')
         #button8
-        self.make_button('H',565,250,self.setting_menu,'B')
+        self.make_button('H',565,250,self.setting_menu,'H')
 
 
     def setting_menu(self,alphabet):
@@ -134,9 +134,7 @@ class GUI(tk.Frame):
         #combobox2(type)
         self.make_combobox(525,250,self.type_list['tops'])
         #button(save)
-        self.make_button('save',85,90,self.save_combobox)
-        # save_btn = tk.Button(self.frame_list[0],,compound="top",command= lambda :self.save_combobox())
-        # save_btn.place(x=85,y=90)
+        self.make_button('save',85,90,self.save_combobox,None)
 
 
 root = tk.Tk()
