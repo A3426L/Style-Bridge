@@ -24,9 +24,9 @@ class GUI(tk.Frame):
                           'G':self.number_path+'G.png','H':self.number_path+'H.png','save':self.number_path+'save.png'} 
         self.name_list = ["tkimg","tkimg1","tkimg2","tkimg3","tkimg4","tkimg5","tkimg6","tkimg7","tkimg8"]
 
-        self.comboname_list = ['color','type','brightness','saturation','flags']
+        self.comboname_list = ['select','color','type','brightness','saturation','flags']
         self.color_list=['White','Black','Red','Pink','Orange','Blue','Yellow','Green','Purple','grey','brown']
-        self.type_list={'tops':['jaket','T-shurts'],
+        self.type_list={'please Select':['a'],'tops':['jaket','T-shurts'],
                         'botoms':['jeans','tino']}
 
         self.func_count = 0
@@ -43,6 +43,7 @@ class GUI(tk.Frame):
         self.frame_list[0] = ttk.Frame(root,width=800,height=480)
         self.frame_list[0].place(x=0,y=0)
         self.func_count = 0
+        self.combo_count = 0
           
     def make_img(self,img_path,*size):
         fn = img_path
@@ -123,12 +124,18 @@ class GUI(tk.Frame):
         self.tkimg = ImageTk.PhotoImage(img,master=self.master)
         alphabet_label = ttk.Label(self.frame_list[0],background='black',compound='left',image=self.tkimg)
         alphabet_label.place(x=350,y=0)
+        #combobox0(tops or buttoms)
+        self.make_combobox(245,50,list(self.type_list.keys()))
+        #self.comboname_list[self.combo_count-1]
+        self.comboname_list[self.combo_count-1].bind("<<ComboboxSelected>>",lambda e: print(self.comboname_list[self.combo_count-1].get()))
         #combobox1(color)
         self.make_combobox(245,250,self.color_list)
         #combobox2(type)
-        self.make_combobox(525,250,self.type_list['tops'])
+        self.comboname_list[0].current(0)
+        #print(self.comboname_list[0].get)
+        self.make_combobox(525,250,self.type_list[self.comboname_list[self.combo_count-2].get()])
         #button(save)
-        self.make_button('save',85,90,self.save_combobox,None)
+        self.make_button('save',85,90,self.save_combobox,NONE,100,100)
 
 
 root = tk.Tk()
