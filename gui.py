@@ -68,13 +68,12 @@ class GUI(tk.Frame):
         self.comboname_list[self.combo_count-1].place(x=place_x,y=place_y)   
 
     def save_combobox(self,input):
-        if (input == 'set'):
-            self.x = self.comboname_list[self.combo_count-1].get()
-        else:
-            data=self.comboname_list[0].get()
-            print(data)
-            data=self.comboname_list[1].get()
-            print(data)
+        data=self.comboname_list[0].get()
+        print(data)
+        data=self.comboname_list[1].get()
+        print(data)
+        data=self.comboname_list[2].get()
+        print(data)
     
 
     def top_menu(self):
@@ -133,13 +132,14 @@ class GUI(tk.Frame):
         #combobox0(tops or buttoms)
         self.make_combobox(245,50,list(self.type_list.keys()))
         #self.comboname_list[self.combo_count-1]
-        self.comboname_list[self.combo_count-1].bind("<<ComboboxSelected>>",lambda e: self.save_combobox('set'))
+
         #combobox1(color)
         self.make_combobox(245,250,self.color_list)
         #combobox2(type)
         self.comboname_list[0].current(0)
         #print(self.comboname_list[0].get)
         self.make_combobox(525,250,self.type_list['tops'])
+        self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[self.combo_count-1].set(self.type_list[self.comboname_list[0].get()][0]))
         #button(save)
         self.make_button('save',85,90,self.save_combobox,NONE,100,100)
 
