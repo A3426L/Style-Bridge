@@ -131,15 +131,13 @@ class GUI(tk.Frame):
         alphabet_label.place(x=350,y=0)
         #combobox0(tops or buttoms)
         self.make_combobox(245,50,list(self.type_list.keys()))
-        #self.comboname_list[self.combo_count-1]
-
+        self.comboname_list[0].current(0)
         #combobox1(color)
         self.make_combobox(245,250,self.color_list)
         #combobox2(type)
-        self.comboname_list[0].current(0)
-        #print(self.comboname_list[0].get)
         self.make_combobox(525,250,self.type_list['tops'])
         self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[self.combo_count-1].set(self.type_list[self.comboname_list[0].get()][0]))
+        self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[self.combo_count-1].set(''),"+")
         #button(save)
         self.make_button('save',85,90,self.save_combobox,NONE,100,100)
 
