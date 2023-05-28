@@ -10,7 +10,7 @@ import inspect  #呼び出された関数を知るために使用
 
 
 
-class GUI(tk.Frame):
+class base(tk.Frame):
     def __init__(self,master = None):
         super().__init__(master)
         
@@ -33,8 +33,10 @@ class GUI(tk.Frame):
 
         self.func_count = 0
         self.combo_count = 0
-        self.x = StringVar()
-        self.x = 'please Select'
+
+        self.data = {}
+
+    
         
         self.master.title('Menu')
         self.master.geometry("800x480")       
@@ -70,10 +72,12 @@ class GUI(tk.Frame):
         self.comboname_list[self.combo_count-1].place(x=place_x,y=place_y)   
 
     def save_combobox(self,input):
-        data = [input,self.comboname_list[0].get(),self.comboname_list[1].get(),self.comboname_list[2].get(),self.comboname_list[3].get(),self.comboname_list[4].get()]
-        print(data)
+        
+        self.data.update({input:[self.comboname_list[0].get(),self.comboname_list[1].get(),self.comboname_list[2].get(),self.comboname_list[3].get(),self.comboname_list[4].get()]})
+        print(self.data)
     
 
+class frame(base):
     def top_menu(self,input):
         self.refresh_frame()
         self.master.title('top_Menu')
@@ -140,7 +144,6 @@ class GUI(tk.Frame):
         self.make_combobox(525,180,self.brightness_list)
         #combobox4(saturation)
         self.make_combobox(75,300,self.saturation_list)
-
         #button(back)
         self.make_button('A',525,50,self.closet_menu,NONE)
         #button(Top)
@@ -149,8 +152,11 @@ class GUI(tk.Frame):
         self.make_button('save',350,380,self.save_combobox,alphabet,100,50)
 
 
+
 root = tk.Tk()
-app = GUI(master=root)
+# app = GUI(master=root)
+# app.mainloop()
+app=frame()
 app.mainloop()
         
         
