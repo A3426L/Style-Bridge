@@ -7,6 +7,8 @@ import os
 from PIL import Image
 from PIL import ImageTk
 import inspect  #呼び出された関数を知るために使用
+import pyaudio
+import wave
 
 
 
@@ -75,6 +77,9 @@ class base(tk.Frame):
         
         self.data.update({input:[self.comboname_list[0].get(),self.comboname_list[1].get(),self.comboname_list[2].get(),self.comboname_list[3].get(),self.comboname_list[4].get()]})
         print(self.data)
+
+    def goout(self,input):
+        print("goout")
     
 
 class frame(base):
@@ -90,7 +95,7 @@ class frame(base):
         #button1(closet)
         self.make_button('closet_btn',85,90,self.closet_menu,None)
         #button2(go out)
-        self.make_button('goout_btn',485,90,print,'goout',256,256)
+        self.make_button('goout_btn',485,90,self.goout,NONE,256,256)
     
     def closet_menu(self,input):
         self.refresh_frame()
@@ -151,12 +156,22 @@ class frame(base):
         #button(save)
         self.make_button('save',350,380,self.save_combobox,alphabet,100,50)
 
+class hardware(frame):
+
+    def get_voice(self):
+        CHUNK = 2**10
+        FORMAT = pyaudio.paInt16
+
+
+    def goout(self, input):
+        print("ininyay")
+
 
 
 root = tk.Tk()
 # app = GUI(master=root)
 # app.mainloop()
-app=frame()
+app=hardware()
 app.mainloop()
         
         
