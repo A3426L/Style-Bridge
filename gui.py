@@ -26,8 +26,10 @@ class GUI(tk.Frame):
 
         self.comboname_list = ['select','color','type','brightness','saturation','flags']
         self.color_list=['White','Black','Red','Pink','Orange','Blue','Yellow','Green','Purple','grey','brown']
-        self.type_list={'please Select':['a'],'tops':['jaket','T-shurts'],
-                        'botoms':['jeans','tino']}
+        self.type_list={'please Select':['a'],'tops':['','jaket','T-shurts'],
+                        'botoms':['','jeans','tino']}
+        self.brightness_list = ['high','normal','low']
+        self.saturation_list = ['high','normal','low']
 
         self.func_count = 0
         self.combo_count = 0
@@ -130,16 +132,23 @@ class GUI(tk.Frame):
         alphabet_label = ttk.Label(self.frame_list[0],background='black',compound='left',image=self.tkimg)
         alphabet_label.place(x=350,y=0)
         #combobox0(tops or buttoms)
-        self.make_combobox(245,50,list(self.type_list.keys()))
+        self.make_combobox(75,50,list(self.type_list.keys()))
         self.comboname_list[0].current(0)
         #combobox1(color)
-        self.make_combobox(245,250,self.color_list)
+        self.make_combobox(75,180,self.color_list)
         #combobox2(type)
-        self.make_combobox(525,250,self.type_list['tops'])
-        self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[self.combo_count-1].set(self.type_list[self.comboname_list[0].get()][0]))
-        self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[self.combo_count-1].set(''),"+")
+        self.make_combobox(300,180,self.type_list['tops'])
+        self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[2].configure(values=self.type_list[self.comboname_list[0].get()]))
+        self.comboname_list[0].bind("<<ComboboxSelected>>",lambda e: self.comboname_list[2].set(self.type_list[self.comboname_list[0].get()][0]),"+")
+        #combobox3(brightness)
+        self.make_combobox(525,180,self.brightness_list)
+        #combobox4(saturation)
+        self.make_combobox(75,300,self.saturation_list)
+
+        #button(back)
+        self.make_button('A',525,50,self.closet_menu,NONE)
         #button(save)
-        self.make_button('save',85,90,self.save_combobox,NONE,100,100)
+        self.make_button('save',350,380,self.save_combobox,NONE,100,50)
 
 
 root = tk.Tk()
