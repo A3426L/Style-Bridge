@@ -39,7 +39,7 @@ class GUI(tk.Frame):
         self.master.title('Menu')
         self.master.geometry("800x480")       
         self.refresh_frame()
-        self.top_menu()
+        self.top_menu(NONE)
         
     def refresh_frame(self):
         if inspect.stack()[1].function != '__init__':
@@ -70,15 +70,11 @@ class GUI(tk.Frame):
         self.comboname_list[self.combo_count-1].place(x=place_x,y=place_y)   
 
     def save_combobox(self,input):
-        data=self.comboname_list[0].get()
-        print(data)
-        data=self.comboname_list[1].get()
-        print(data)
-        data=self.comboname_list[2].get()
+        data = [input,self.comboname_list[0].get(),self.comboname_list[1].get(),self.comboname_list[2].get(),self.comboname_list[3].get(),self.comboname_list[4].get()]
         print(data)
     
 
-    def top_menu(self):
+    def top_menu(self,input):
         self.refresh_frame()
         self.master.title('top_Menu')
         #canvas1
@@ -147,8 +143,10 @@ class GUI(tk.Frame):
 
         #button(back)
         self.make_button('A',525,50,self.closet_menu,NONE)
+        #button(Top)
+        self.make_button('B',625,50,self.top_menu,NONE)
         #button(save)
-        self.make_button('save',350,380,self.save_combobox,NONE,100,50)
+        self.make_button('save',350,380,self.save_combobox,alphabet,100,50)
 
 
 root = tk.Tk()
